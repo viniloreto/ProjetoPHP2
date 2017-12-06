@@ -24,23 +24,23 @@ $id = $_SESSION['userId'];
   <div class="row">
    
     
-    <div class="col">
-      <p>Nome: <?php  echo $_SESSION['username']; ?></p>
-      <p>Login: <?php  echo $_SESSION['userLogin']; ?></p>
+    <div class="col-md-9">
+      <p>Nome: <?= $_SESSION['username']; ?></p>
+      <p>Login: <?= $_SESSION['userLogin']; ?></p>
       <form action="foto-Upload.php" method="post" enctype="multipart/form-data">
         <label for="addimg">Adicione uma foto: </label>
         <input required type="file" name="addimg"/><br/><br/>
-        <input type="hidden" value="<?php echo $id; ?>" name="id">
+        <input type="hidden" value="<?= $id; ?>" name="id">
         <input type="submit" name="enviaimg" class="btn btn-primary" value="Enviar foto"/>
       </form>
     </div>
-    <div class="col" >
-     <Div class="col-sm-5" >
+    <div class="col-md-2" >
+     
        <?php $aux = ListaFoto($conexao, $_SESSION['userId']);
        $aux1 = "fotos/".$aux['foto'];
        ?>
-       <img  width='200px' height='auto' src="<?php echo $aux1 ?>"/>
-     </Div>
+       <img  width='200px' height='auto' src="<?= $aux1 ?>"/>
+     
    </div>
 
  </div>
@@ -59,8 +59,11 @@ $id = $_SESSION['userId'];
       <th>Categoria</th>
     </thead>
   </tr>
-  <?php $produtos = listaMeusProdutos($conexao);
-  foreach ($produtos as $produto) {?>
+  <?php 
+$produtos = listaMeusProdutos($conexao);
+ 
+    foreach ($produtos as $produto) {
+    ?>
   <tr>
     <td><?=$produto['nome']?></td>
     <td><?=$produto['preco']?></td>
@@ -75,13 +78,20 @@ $id = $_SESSION['userId'];
       <td>
         <form action="produto-formulario-editar.php" method="post">
           <input type="hidden" name="id" value="<?=$produto['id']?>">
-          <button class="btn btn-danger" >Editar</button>
+          <button class="btn btn-success" >Editar</button>
         </form>
       </td>
     </tr>
+    
     <?php }
-    ?>
-  </table>
 
+    ?>
+
+  </table>
+<?php if(!$produtos){
+?>
+<a class="btn btn-primary" href="produto-formulario.php"> Adicione um produto</a>
+  <?php }?>
 </body>
 </html>
+
