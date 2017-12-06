@@ -35,7 +35,7 @@ if(array_key_exists("removido", $_GET)&&$_GET["removido"]=="true"){
       <td>
         <form action="produto-formulario-editar.php" method="post">
           <input type="hidden" name="id" value="<?=$produto['id']?>">
-          <button class="btn btn-danger" >Editar</button>
+          <button class="btn btn-success" >Editar</button>
         </form>
       </td>
     </tr>
@@ -44,3 +44,4 @@ if(array_key_exists("removido", $_GET)&&$_GET["removido"]=="true"){
   </table>
 
   <?php include('rodape.php')?>
+
