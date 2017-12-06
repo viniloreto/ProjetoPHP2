@@ -8,6 +8,10 @@ ChecarSession();
 if(isset($_POST['deslogar']))
 	Deslogar();
 ?>
+<?php $aux = ListaFoto($conexao, $_SESSION['userId']);
+						$aux1 = "fotos/".$aux['foto'];
+
+						?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,37 +21,29 @@ if(isset($_POST['deslogar']))
 	<link rel="stylesheet" type="text/css" href="loja.css">
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="navbar-brand" href="home.php">Meu Perfil</a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="produto-formulario.php">Adiciona Produto</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="produto-lista.php">Todos os produtos</a>
-					</li>
-					<li  class="nav-item" style="width: 500px">						
-						<?php $aux = ListaFoto($conexao, $_SESSION['userId']);
-						$aux1 = "fotos/".$aux['foto'];
 
-						?>
-						<img  style="border-radius: 25px; float: right;" width='50px' height='auto' src="<?php echo $aux1 ?>"/>
-					</li>
-					<li class="nav-item">
-						<form method="post">
-							<span <a class="nav-link"><?php echo $_SESSION['username']; ?> - <input type="submit" name="deslogar" value="Logout"/></span>
-						</form>
-					</li>
-				</ul>
-			</div>			
-		</div>
-	</nav>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="home.php">Meu Perfil</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+	<div class="container">
+  		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+      			<li class="nav-item">
+					<a class="nav-link" href="produto-formulario.php">Adiciona Produto</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="produto-lista.php">Todos os Produtos</a>
+				</li>
+       		</ul>
+    	</div>
+    	<form class="form-inline my-2 my-lg-0 fixed-right">
+    		<img  style="border-radius: 25px; float: right;" width='50px' height='auto' src="<?= $aux1 ?>"/>
+      		<span class="nav-link" style="color: darkgrey"><?= $_SESSION['username']; ?> - <input type="submit" name="deslogar" value="Logout"/></span>
+    	</form>
+  </div>
+</nav>
 	<div class="container">
 		<div class="principal">
