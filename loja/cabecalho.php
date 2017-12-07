@@ -39,7 +39,7 @@ if(isset($_POST['deslogar']))
 				</li>
        		</ul>
     	</div>
-    	<form class="form-inline my-2 my-lg-0 fixed-right">
+    	<form method="post" class="form-inline my-2 my-lg-0 fixed-right">
     		<img  style="border-radius: 25px; float: right;" width='50px' height='auto' src="<?= $aux1 ?>"/>
       		<span class="nav-link" style="color: darkgrey"><?= $_SESSION['username']; ?> - <input type="submit" name="deslogar" value="Logout"/></span>
     	</form>
