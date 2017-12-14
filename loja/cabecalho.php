@@ -5,8 +5,11 @@ include('banco-produto.php');
 
 session_start();
 ChecarSession();
-if(isset($_POST['deslogar']))
+if(isset($_POST['deslogar'])){
 	Deslogar();
+	session_unset();
+	session_destroy();
+}	
 ?>
 <?php $aux = ListaFoto($conexao, $_SESSION['userId']);
 						$aux1 = "fotos/".$aux['foto'];
